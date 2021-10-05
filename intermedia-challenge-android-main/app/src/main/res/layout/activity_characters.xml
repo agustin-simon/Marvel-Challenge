@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="character"
+            type="com.intermedia.challenge.data.models.Character"/>
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/layout_banner_characters"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="@color/colorPrimaryDark"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent"
+            android:focusableInTouchMode="true">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/icon_close_details"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_baseline_close_24"
+                android:layout_marginStart="21dp"
+                android:layout_gravity="center_vertical"
+                />
+
+            <TextView
+                android:id="@+id/text_character_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/title_app"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:paddingTop="15dp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center_horizontal"
+                android:paddingEnd="15dp"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/layout_item_event"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/layout_banner_characters"
+            android:orientation="vertical"
+            android:background="@color/white">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/image_comic_character"
+                imageThumbnail="@{character.thumbnail}"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="360dp"
+                app:layout_constraintDimensionRatio="1"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/text_character_description"
+                android:layout_marginTop="21dp"
+                android:layout_width="255dp"
+                android:layout_height="wrap_content"
+                android:text="@{character.description}"
+                android:fontFamily="sans-serif"
+                android:textColor="#222053"
+                android:layout_gravity="center_horizontal"
+                tools:text="Using the power of the Infinity Stones, Thanos believes he can ultimately save the universe by wiping out half of its population."
+                android:textSize="14dp"/>
+
+
+            
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="35dp"/>
+
+            <TextView
+                android:id="@+id/title_character_comics"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="APPEARS IN THESE COMICS"
+                android:textSize="20dp"
+                android:textColor="@color/black"
+                android:fontFamily="sans-serif-condensed"
+                android:gravity="center_horizontal"/>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="14dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_comics_character"
+                android:nestedScrollingEnabled="false"
+                android:overScrollMode="never"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="5"
+                tools:listitem="@layout/view_comic_item"
+                android:background="@color/white">
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

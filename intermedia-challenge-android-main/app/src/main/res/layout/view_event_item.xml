@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="event"
+            type="com.intermedia.challenge.data.models.Event" />
+
+        <variable
+            name="img"
+            type="java.lang.String" />
+
+            <import type="android.view.View"/>
+
+        <variable
+            name="visibility"
+            type="java.lang.Boolean"/>
+
+        <variable
+            name="date"
+            type="java.lang.String"/>
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/itemLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="4dp"
+        app:cardCornerRadius="4dp"
+        android:background="@color/background_grey">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/layout_item_event"
+                android:layout_width="match_parent"
+                android:layout_height="125dp"
+                app:layout_constraintTop_toTopOf="parent"
+                android:orientation="horizontal"
+                android:background="@color/white">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/image_comic_thumbnail"
+                    imageThumbnail="@{event.thumbnail}"
+                    android:scaleType="fitCenter"
+                    app:riv_corner_radius_top_left="4dp"
+                    app:riv_corner_radius_bottom_left="4dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    app:layout_constraintDimensionRatio="1"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="16dp"/>
+
+                <LinearLayout
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginVertical="16dp"
+                    android:layout_marginStart="30dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/text_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:ellipsize="end"
+                        android:gravity="center_horizontal"
+                        android:maxLines="1"
+                        android:text="@{event.title}"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="24sp"
+                        tools:text="Event" />
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="9dp" />
+
+                    <TextView
+                        android:id="@+id/text_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:gravity="center_horizontal"
+                        android:maxLines="2"
+                        android:fontFamily="sans-serif"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="14sp"
+                        tools:text="9 de Agosto 2020" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/icon_event_state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@drawable/keyboard_icon_state_change"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/layout_item_event"
+                android:orientation="vertical">
+                <Space
+                    android:id="@+id/space"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:foregroundGravity="center_horizontal">
+                </Space>
+
+                <TextView
+                    android:id="@+id/title_comic_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="COMICS TO DISCUSS"
+                    android:textSize="20dp"
+                    app:layout_constraintTop_toBottomOf="@+id/space"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:gravity="center_horizontal"
+                    android:visibility="@{visibility ? View.VISIBLE : View.GONE}">
+                </TextView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list_comics_event"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/title_comic_recycler"
+                    tools:itemCount="5"
+                    tools:listitem="@layout/view_comic_item"
+                    android:background="@color/white">
+                </androidx.recyclerview.widget.RecyclerView>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>
