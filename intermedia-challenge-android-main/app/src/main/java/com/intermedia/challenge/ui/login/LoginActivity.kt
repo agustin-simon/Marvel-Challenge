@@ -49,6 +49,7 @@ class LoginActivity : AppCompatActivity() {
 
                 auth.createUserWithEmailAndPassword(email ,password).addOnCompleteListener(this) { task->
                     if(task.isSuccessful) {
+                        applyToast("The user has successfully registered.")
                         startActivity(Intent(this, MainScreenActivity::class.java).apply {
                             addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
@@ -82,6 +83,7 @@ class LoginActivity : AppCompatActivity() {
                 unapplyStateView(button_login)
                 unapplyStateView(button_register)
             }
+            changeStateInputs()
         }
         text_input_password.addTextChangedListener {
             if(text_input_email.length() > numberCharAllowed && text_input_password.length() > numberCharAllowed) {
@@ -92,6 +94,7 @@ class LoginActivity : AppCompatActivity() {
                 unapplyStateView(button_login)
                 unapplyStateView(button_register)
             }
+            changeStateInputs()
         }
 
         if(user == null) {
@@ -135,6 +138,13 @@ class LoginActivity : AppCompatActivity() {
             }
     }
 
+    private fun changeStateInputs() {
+        if(text_input_password.length() == 0 || text_input_email.length() == 0) {
+            unApplyErrorEffects(text_input_password_layout)
+            unApplyErrorEffects(text_input_email_layout)
+        }
+    }
+
     private fun unapplyStateView(view: View) {
         view.isClickable = false
         view.setBackgroundResource(R.drawable.dw_rounded_button)
@@ -159,6 +169,12 @@ class LoginActivity : AppCompatActivity() {
         elem.background = (ContextCompat.getDrawable(this, R.drawable.dw_red_stroke_error))
         elem.hintTextColor = (ContextCompat.getColorStateList(this, R.color.red))
         elem.defaultHintTextColor = ContextCompat.getColorStateList(this, R.color.red)
+    }
+
+    private fun unApplyErrorEffects(elem : TextInputLayout) {
+        elem.background = (ContextCompat.getDrawable(this, R.drawable.rounded_edittext_states))
+        elem.hintTextColor = (ContextCompat.getColorStateList(this, R.color.grey))
+        elem.defaultHintTextColor = ContextCompat.getColorStateList(this, R.color.grey)
     }
 
 }

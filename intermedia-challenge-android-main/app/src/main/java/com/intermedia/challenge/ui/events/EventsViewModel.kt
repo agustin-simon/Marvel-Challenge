@@ -17,7 +17,7 @@ class EventsViewModel(private val eventsRepository: EventsRepository) : ViewMode
     private val _events = MutableLiveData<List<Event>>()
     val events: LiveData<List<Event>> get() = _events
     var events_list: List<Event> = listOf()
-    var intent: Int = 0
+    val eventLimit: Int = 25
 
     init {
         loadEvents(0)
@@ -45,7 +45,7 @@ class EventsViewModel(private val eventsRepository: EventsRepository) : ViewMode
 
         events.forEach { item ->
             if(item.start != null && item.start >= todayDate) {
-                if(events_list.size < 25) {
+                if(events_list.size < eventLimit) {
                     events_list.add(item)
                 }
             }

@@ -1,7 +1,6 @@
 package com.intermedia.challenge.ui.events
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +9,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.intermedia.challenge.R
-import com.intermedia.challenge.data.models.Event
 import com.intermedia.challenge.databinding.FragmentEventsBinding
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
