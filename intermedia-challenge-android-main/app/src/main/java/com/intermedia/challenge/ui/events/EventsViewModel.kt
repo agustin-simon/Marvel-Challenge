@@ -44,7 +44,16 @@ class EventsViewModel(private val eventsRepository: EventsRepository) : ViewMode
         var events_list: MutableList<Event> = mutableListOf()
 
         events.forEach { item ->
-            if(item.start != null && item.start >= todayDate) {
+
+            //Muestra los eventos a partir de la fecha actual
+            /*if(item.start != null && item.start >= todayDate) {
+                if(events_list.size < eventLimit) {
+                    events_list.add(item)
+                }
+            }*/
+
+            //Muestra todos los eventos
+            if(item.start != null) {
                 if(events_list.size < eventLimit) {
                     events_list.add(item)
                 }

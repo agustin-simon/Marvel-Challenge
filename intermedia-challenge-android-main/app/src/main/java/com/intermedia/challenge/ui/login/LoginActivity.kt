@@ -71,8 +71,6 @@ class LoginActivity : AppCompatActivity() {
         val sharedPref = getPreferences(Context.MODE_PRIVATE) ?: return
         //Verificamos si el usuario esta logeado
 
-        //user = null
-
         text_input_email.addTextChangedListener {
             //Chequea que la cantidad de valores del input sea mayor a 'numberCharAllowed' = 7
             if(text_input_email.length() > numberCharAllowed && text_input_password.length() > numberCharAllowed) {
